@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="reset.min.css" type="text/css"/>
+    <style>
+        .container{padding:10px;width:500px;margin:0 auto;}
+        .container .pages{font-size:0;}
+        .container .pages li{position:relative;top:1px;display:inline-block;width:100px;height:30px;font-size:14px;line-height:30px;text-align:center;border:1px solid #666;cursor:pointer;margin-right:5px;}
+        .container .pages li.current{background-color:lightblue;border-bottom:1px solid lightblue;}
+        .container .contents div{display:none;width:100%;height:300px;background-color:lightblue;border:1px solid #666;text-align:center;line-height:50px;font-size:20px;}
+        .container .contents div.current{display: block;}
+    </style>
+</head>
+<body>
+<div id="tab1" class="container">
+    <ul class="pages"></ul>
+    <div class="contents"></div>
+</div>
+<div id="tab2" class="container">
+    <ul class="pages"></ul>
+    <div class="contents"></div>
+</div>
+<script src="轮播图_jquery/js/jquery-1.11.3.js"></script>
+<script>
+    function changeTab(selector){
+        var $pages = selector.children(".pages");
+        var $contents = selector.children(".contents");
+        $.ajaxSetup({
+            async : false
+        });
+        $.get("tab.json",function(result){
+            $(result).each(function(index,item){
+                index == 0?$pages.append("<li class='current'>"+item.title+"</li>"):$pages.append("<li>"+item.title+"</li>");
+                index == 0?$contents.append("<div class='current'>"+item.content+"</div>"):$contents.append("<div>"+item.content+"</div>");
+            })
+        });
+
+        $pages.children("li").on("click",function(){
+            var $this = $(this);
+            $this.addClass("current").siblings().removeClass("current").parent().next().children("div").eq($this.index()).addClass("current").siblings().removeClass("current");
+        })
+    }
+
+    $(".container").each(function(){
+        changeTab($(this));
+    });
+</script>
+</body>
+</html>
