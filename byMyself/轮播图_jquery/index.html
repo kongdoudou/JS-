@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="css/reset.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/banner.css" type="text/css"/>
+</head>
+<body>
+<div class="banner" id="bannerFir">
+    <div class="bannerInner">
+    </div>
+    <ul class="bannerTip">
+    </ul>
+    <a href="javascript:void 0;" class="bannerLeft"></a>
+    <a href="javascript:void 0;" class="bannerRight"></a>
+</div>
+<div class="banner" id="bannerTwo">
+    <div class="bannerInner">
+    </div>
+    <ul class="bannerTip">
+    </ul>
+    <a href="javascript:void 0;" class="bannerLeft"></a>
+    <a href="javascript:void 0;" class="bannerRight"></a>
+</div>
+<script src="js/jquery-1.11.3.js" charset="utf-8" type="text/javascript"></script>
+<script src="js/banner_jquery.js" charset="utf-8" type="text/javascript"></script>
+<script>
+    $("#bannerFir").banner('json/banner.json',2000);
+    $("#bannerTwo").banner('json/banner3.json',1000);
+</script>
+</body>
+</html>
